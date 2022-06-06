@@ -25,8 +25,8 @@ app.get("/suma/:num1/:num2", (req, res) => {
   let num1 = Number(req.params.num1);
   let num2 = Number(req.params.num2);
   let resultado = num1 + num2;
-  if (num1 || num2 < 0) {
-    res.status(400).json("No se pueden devolver números negativos");
+  if (num1 || num2 <= 0) {
+    res.status(400).json("No se pueden introducir números negativos o iguales a cero");
   } else {
     res.status(200).json({ msg: resultado });
   }
@@ -34,6 +34,16 @@ app.get("/suma/:num1/:num2", (req, res) => {
   console.log(num1, num2);
   console.log(typeof num1); //sacándole la conversión Number();*/
 });
+
+app.get("/resta/:num1/:num2", (req, res) => {
+    let num1 = Number(req.params.num1);
+    let num2 = Number(req.params.num2);
+    let resultado = num1 - num2;
+    if (num1 || num2 <= 0) {
+      res.status(400).json("No se pueden introducir números negativos o iguales a cero");
+    } else {
+      res.status(200).json({ msg: resultado });
+    }
 
 app.get("/prueba", (req, res) => {
   //http://localhost:3000/prueba?nombre=juan
