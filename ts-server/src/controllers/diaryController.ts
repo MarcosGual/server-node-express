@@ -1,16 +1,17 @@
 import * as diaryServices from "../services/diaryService";
+import toNewDiaryEntry from "../utils/newEntry";
 
-export const getDiaries = (req, res) => {
+export const getDiaries = (req: any, res: any) => {
   res.send(diaryServices.getEntriesWithoutSensitiveInfo());
 };
 
-const getDiaryById = (req, res) => {
+const getDiaryById = (req: any, res: any) => {
   const diary = diaryServices.findById(+req.params.id);
 
   return diary ? res.send(diary) : res.sendStatus(404);
 };
 
-const postDiary = (req, res) => {
+const postDiary = (req: any, res: any) => {
   try {
     const { date, weather, visibility, comment } = toNewDiaryEntry(req.body);
 
@@ -27,7 +28,7 @@ const postDiary = (req, res) => {
   }
 };
 
-const updateDiary = (req, res) => {
+const updateDiary = (req: any, res: any) => {
   const entry = req.body;
 
   diaryServices.updateDiary(entry);
@@ -35,7 +36,7 @@ const updateDiary = (req, res) => {
   res.status(200).json(diaryServices.getEntriesWithoutSensitiveInfo());
 };
 
-const deleteDiaryById = (req, res) => {
+const deleteDiaryById = (req: any, res: any) => {
   diaryServices.deleteDiary(+req.params.id);
 
   res.status(200).send(diaryServices.getEntriesWithoutSensitiveInfo());
