@@ -1,7 +1,9 @@
-import { NewDiaryEntry, Visibility, Weather } from "../types";
+import { Visibility, Weather } from "../enums";
+import { NewDiaryEntry } from "../types";
+
 
 const isString = (string: string): boolean => {
-  return typeof string !== "string";
+  return typeof string === "string";
 };
 
 const parseComment = (commentFromRequest: any): string => {

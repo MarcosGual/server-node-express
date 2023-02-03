@@ -5,20 +5,6 @@ import { type } from "os";
 
 //cuando agregamos un enum, se convierte en código javascript
 // por lo que necesitamos cambiar el nombre del archivo types.d.ts a types.ts
-export enum Weather {
-  Sunny = "sunny",
-  Rainy = "rainy",
-  Cloudy = "cloudy",
-  Windy = "windy",
-  Stormy = "stormy",
-}
-
-export enum Visibility {
-  Great = "great",
-  Good = "good",
-  Ok = "ok",
-  Poor = "poor",
-}
 
 export interface DiaryEntry {
   id: number;
