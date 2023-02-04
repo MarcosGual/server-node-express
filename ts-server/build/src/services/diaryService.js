@@ -15,7 +15,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.deleteDiary = exports.updateDiary = exports.addDiary = exports.getEntriesWithoutSensitiveInfo = exports.findById = exports.getEntries = void 0;
-const diaries_json_1 = __importDefault(require("../data/diaries.json"));
+const diaries_json_1 = __importDefault(require("../../data/diaries.json"));
+const jsonfile = require("jsonfile");
 let diaries = diaries_json_1.default; //EXCEPCIÓN DE TIPO (as) -->evitarla siempre que se pueda
 const getEntries = () => diaries;
 exports.getEntries = getEntries;
@@ -35,9 +36,20 @@ const getEntriesWithoutSensitiveInfo = () => {
 };
 exports.getEntriesWithoutSensitiveInfo = getEntriesWithoutSensitiveInfo;
 const addDiary = (newDiaryEntry) => {
-    const newEntry = Object.assign({ id: Math.max(...diaries.map((d) => d.id)) + 1 }, newDiaryEntry);
-    diaries.push(newEntry);
-    return newEntry;
+    try {
+        const newEntry = Object.assign({ id: Math.max(...diaries.map((d) => d.id)) + 1 }, newDiaryEntry);
+        diaries.push(newEntry);
+        jsonfile.writeFileSync("./data/diaries.json", diaries, { spaces: 2 }, function (err) {
+            if (err)
+                console.error(err.message);
+        });
+        console.log("guardado");
+        return newEntry;
+    }
+    catch (error) {
+        console.log(error.message);
+        return;
+    }
 };
 exports.addDiary = addDiary;
 const updateDiary = (updatedEntry) => {

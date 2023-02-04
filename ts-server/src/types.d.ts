@@ -1,7 +1,7 @@
 import { type } from "os";
 
-//export type Weather = "sunny" | "rainy" | "cloudy" | "windy" | "stormy";
-//export type Visibility = "great" | "good" | "ok" | "poor";
+export type Weather = "sunny" | "rainy" | "cloudy" | "windy" | "stormy";
+export type Visibility = "great" | "good" | "ok" | "poor";
 
 //cuando agregamos un enum, se convierte en código javascript
 // por lo que necesitamos cambiar el nombre del archivo types.d.ts a types.ts
@@ -11,7 +11,7 @@ export interface DiaryEntry {
   date: string;
   weather: Weather;
   visibility: Visibility;
-  comment: string;
+  comment: string
 }
 
 interface SpecialDiaryEntry extends DiaryEntry {

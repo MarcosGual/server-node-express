@@ -1,5 +1,5 @@
-import { DiaryEntry } from "../types.d";
-
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 // const diaryEntries: Array<DiaryEntry> = [
 //   {
 //     id: 1,
@@ -23,5 +23,4 @@ import { DiaryEntry } from "../types.d";
 //     comment: "Fine flight, I hope the next one to be much better",
 //   },
 // ];
-
 //export default diaryEntries;

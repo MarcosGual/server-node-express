@@ -26,18 +26,18 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const express_1 = __importDefault(require("express"));
+exports.getDiaries = void 0;
 const diaryServices = __importStar(require("../services/diaryService"));
 const newEntry_1 = __importDefault(require("../utils/newEntry"));
-const router = express_1.default.Router();
-router.get("/", (req, res) => {
+const getDiaries = (req, res) => {
     res.send(diaryServices.getEntriesWithoutSensitiveInfo());
-});
-router.get("/:id", (req, res) => {
+};
+exports.getDiaries = getDiaries;
+const getDiaryById = (req, res) => {
     const diary = diaryServices.findById(+req.params.id);
     return diary ? res.send(diary) : res.sendStatus(404);
-});
-router.post("/", (req, res) => {
+};
+const postDiary = (req, res) => {
     try {
         const { date, weather, visibility, comment } = (0, newEntry_1.default)(req.body);
         const newDiaryEntry = diaryServices.addDiary({
@@ -51,14 +51,14 @@ router.post("/", (req, res) => {
     catch (e) {
         res.status(500).send(e.message);
     }
-});
-router.put("/", (req, res) => {
+};
+const updateDiary = (req, res) => {
     const entry = req.body;
     diaryServices.updateDiary(entry);
     res.status(200).json(diaryServices.getEntriesWithoutSensitiveInfo());
-});
-router.delete("/:id", (req, res) => {
+};
+const deleteDiaryById = (req, res) => {
     diaryServices.deleteDiary(+req.params.id);
     res.status(200).send(diaryServices.getEntriesWithoutSensitiveInfo());
-});
-exports.default = router;
+};
+exports.default = { getDiaries: exports.getDiaries, getDiaryById, postDiary, updateDiary, deleteDiaryById };

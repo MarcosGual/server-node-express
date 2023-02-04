@@ -1,5 +1,5 @@
 import { Visibility, Weather } from "../enums";
-import { NewDiaryEntry } from "../types";
+import { NewDiaryEntry } from "../types.d";
 
 
 const isString = (string: string): boolean => {
